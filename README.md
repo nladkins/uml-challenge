@@ -2,33 +2,27 @@
 
 ## Background
 
-* You are on the Advisory Services Team of a financial consultancy. One of your clients, a prominent investment bank, is interested in offering a new cryptocurrency investment portfolio for its customers. The company, however, is lost in the vast universe of cryptocurrencies. They’ve asked you to create a report that includes what cryptocurrencies are on the trading market and determine whether they can be grouped to create a classification system for this new investment.
+The purpose of this repository is to create a report to determine whether crypto currencies can be grouped to create a classification system for this investment.
 
-* You have been handed raw data, so you will first need to process it to fit the machine learning models. Since there is no known classification system, you will need to use unsupervised learning. You will use several clustering algorithms to explore whether the cryptocurrencies can be grouped together with other similar cryptocurrencies. You will use data visualization to share your findings with the investment bank.
+Using a set of raw data for cryptocurrency was used including `CoinName` `Algorithm`, `IsTrading`, `ProofType`, `TotalCoinsMined`, and `TotalCoinSupply`, it needed to be processed to fit the machine learning models.  Since there was no known classification system, an unsupervised learning approach was used.   Clustering algorithms were used to explore whether the cryptocurrencies can be grouped together with other similar cryptocurrencies.  Further, data visualation was developed to share some of the findings.  
 
-## Instructions
+## Data Preparation
 
-### Data Preparation
+The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
 
-* Read `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
+The first step was to discard all cryptocurrencies that are not being traded by filtering currencies that are `true` for `IsTrading`.  Subsequent to this, the `IsTrading` column was dropped (`df.drop`) from the dataframe.  All rows with any null values were removed and the data was filtered further by identifying cryptocurrencies that have been mined (`TotalCoinsMined > 0`).
 
-* Discard all cryptocurrencies that are not being traded. In other words, filter for currencies that are currently being traded. Once you have done this, drop the `IsTrading` column from the dataframe.
+In order for the dataset to be comprehensible to a machine learning algorithm, the data was converted to a numeric format. The `CoinName` was also dropped from the original dataframe as it did not contribute toward the analysis.
 
-* Remove all rows that have at least one null value.
+The next step in data preparation was to convert the remaining features with text values, `Algorithm` and `ProofType`, into numerical data.  This was completed by creating using `get_dummies`.  The dataset was then standardized so that columns with larger values did not influence the outcome.  
 
-* Filter for cryptocurrencies that have been mined. That is, the total coins mined should be greater than zero.
+## Dimensionality Reduction
 
-* In order for your dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, delete the `CoinName` from the original dataframe.
+Creating dummy variables above dramatically increased the number of features in the dataset.  The next step was to perform dimensionality reduction with `PCA`. Rather than specify the number of principal components when you instantiate the PCA model, it is possible to state the desired **explained variance**.  First step was to create a model that preserved 99% of the explained varience using `PCA(n_components=0.99)`.  Following this, an attempt was made to preserve 90% of the explained variance in dimensionality reduction.  This went from 101.34 to 92.82 for the explained variance of the principal components.
 
-* Your next step in data preparation is to convert the remaining features with text values, `Algorithm` and `ProofType`, into numerical data. To accomplish this task, use Pandas to create dummy variables. Examine the number of rows and columns of your dataset now. How did they change?
+The next step was to further reduce the dataset dimensions with `t-SNE` and visually inspect the results. In order to accomplish this task, run `t-SNE` on the principal components: the output of the PCA transformation. Then create a scatter plot of the `t-SNE` output. Observe whether there are distinct clusters or not.
 
-* Standardize your dataset so that columns that contain larger values do not unduly influence the outcome.
-
-### Dimensionality Reduction
-
-* Creating dummy variables above dramatically increased the number of features in your dataset. Perform dimensionality reduction with PCA. Rather than specify the number of principal components when you instantiate the PCA model, it is possible to state the desired **explained variance**. For example, say that a dataset has 100 features. Using `PCA(n_components=0.99)` creates a model that will preserve approximately 99% of the explained variance, whether that means reducing the dataset to 80 principal components or 3. For this project, preserve 90% of the explained variance in dimensionality reduction. How did the number of the features change?
-
-* Next, further reduce the dataset dimensions with t-SNE and visually inspect the results. In order to accomplish this task, run t-SNE on the principal components: the output of the PCA transformation. Then create a scatter plot of the t-SNE output. Observe whether there are distinct clusters or not.
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 
 ### Cluster Analysis with k-Means
 
