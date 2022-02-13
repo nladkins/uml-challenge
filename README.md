@@ -22,26 +22,14 @@ Creating dummy variables above dramatically increased the number of features in 
 
 The next step was to further reduce the dataset dimensions with `t-SNE` and visually inspect the results. In order to accomplish this task, run `t-SNE` on the principal components: the output of the PCA transformation. Then create a scatter plot of the `t-SNE` output. Observe whether there are distinct clusters or not.
 
-![Scatter Plot using t-SNE](https://github.com/nladkins/uml-challenge/blob/main/images/plot.png?raw=true)
+![Scatter Plot reflecting t-SNE](https://github.com/nladkins/uml-challenge/blob/main/images/plot.png?raw=true)
 
 ## Cluster Analysis with k-Means
 
-The last step was to create a cluster analysis using `k-Means`.  A elbow plot was used to identify the best number of clusters.  A for-loop was used to determine the inertia for each `k` between 1 through 10.  Determine, if possible, where the elbow of the plot is, and at which value of `k` it appears.
+The last step was to create a cluster analysis using `k-Means`.  A elbow plot was used to identify the best number of clusters.  A for-loop was used to determine the inertia for each `k` between 1 through 10.  Ideally, it would be best to identify at which value `k` appears.  In this case, there wasn't an elbow for this to be identified.
 
-### Recommendation
+![Elbow Plot reflecting k-Means](https://github.com/nladkins/uml-challenge/blob/main/images/elbow.png?raw=true)
 
-* Based on your findings, make a brief (1-2 sentences) recommendation to your clients. Can the cryptocurrencies be clustered together? If so, into how many clusters? 
+## Recommendation
 
-## Rubric
-
-[Unit 20 - Unsupervised Machine Learning Homework Rubric - Cryptocurrency Clusters](https://docs.google.com/document/d/1zhiC8-PtfMknDxYHagsTukryQAJSdXFRWa-aK3W28Vg/edit?usp=sharing)
-
-- - -
-
-## References
-
-Crypto Coin Comparison Ltd. (2020) Coin market capitalization lists of crypto currencies and prices. Retrieved from [https://www.cryptocompare.com/coins/list/all/USD/1](https://www.cryptocompare.com/coins/list/all/USD/1)
-
-- - -
-
-© 2021 Trilogy Education Services, LLC, a 2U, Inc. brand. Confidential and Proprietary. All Rights Reserved.
+The cryptocurrencies can not be clustered together under the `t-SNE` scatter plot and the `k-Means` elbow curve plot fails the classification of this dataset.
