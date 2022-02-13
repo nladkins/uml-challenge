@@ -18,15 +18,15 @@ The next step in data preparation was to convert the remaining features with tex
 
 ## Dimensionality Reduction
 
-Creating dummy variables above dramatically increased the number of features in the dataset.  The next step was to perform dimensionality reduction with `PCA`. Rather than specify the number of principal components when you instantiate the PCA model, it is possible to state the desired **explained variance**.  First step was to create a model that preserved 99% of the explained varience using `PCA(n_components=0.99)`.  Following this, an attempt was made to preserve 90% of the explained variance in dimensionality reduction.  This went from 101.34 to 92.82 for the explained variance of the principal components.
+Creating dummy variables above dramatically increased the number of features in the dataset.  The next step was to perform dimensionality reduction with `PCA`.  Rather than specify the number of principal components when you instantiate the PCA model, it is possible to state the desired **explained variance**.  The first step was to create a model that preserved 99% of the explained varience using `PCA(n_components=0.99)`.  Following this, an attempt was made to preserve 90% of the explained variance in dimensionality reduction.  This went from 101.34 to 92.82 for the explained variance of the principal components.
 
 The next step was to further reduce the dataset dimensions with `t-SNE` and visually inspect the results. In order to accomplish this task, run `t-SNE` on the principal components: the output of the PCA transformation. Then create a scatter plot of the `t-SNE` output. Observe whether there are distinct clusters or not.
 
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![Scatter Plot using t-SNE](https://github.com/nladkins/uml-challenge/blob/main/images/plot.png?raw=true)
 
-### Cluster Analysis with k-Means
+## Cluster Analysis with k-Means
 
-* Create an elbow plot to identify the best number of clusters. Use a for-loop to determine the inertia for each `k` between 1 through 10. Determine, if possible, where the elbow of the plot is, and at which value of `k` it appears.
+The last step was to create a cluster analysis using `k-Means`.  A elbow plot was used to identify the best number of clusters.  A for-loop was used to determine the inertia for each `k` between 1 through 10.  Determine, if possible, where the elbow of the plot is, and at which value of `k` it appears.
 
 ### Recommendation
 
